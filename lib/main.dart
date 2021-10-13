@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gc/constants.dart';
+import 'package:gc/login_signup/Screens/Login/login_screen.dart';
+import 'package:gc/login_signup/Screens/Signup/signup_screen.dart';
+import 'package:gc/login_signup/Screens/Welcome/welcome_screen.dart';
 import 'package:gc/screens/home/home_screen.dart';
 
 void main() {
@@ -11,6 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        "/signUpScreen": (BuildContext) => SignUpScreen(),
+        "/loginScreen": (BuildContext) => LoginScreen(),
+        "/homeScreen": (BuildContext) => HomeScreen(),
+      },
       debugShowCheckedModeBanner: false,
       title: 'Plant App',
       theme: ThemeData(
@@ -19,7 +27,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomeScreen(),
+      home: WelcomeScreen(),
     );
   }
 }
