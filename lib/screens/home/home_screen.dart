@@ -5,6 +5,7 @@ import 'package:gc/screens/alarm/alarm_screen.dart';
 import 'package:gc/screens/articles/article_screen.dart';
 import 'package:gc/screens/garden/garden_screen.dart';
 import 'package:gc/screens/home/components/body.dart';
+import 'package:gc/screens/home/components/sidebar.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -39,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(),
+      drawer: Sidebar(),
+      appBar: AppBar(
+        elevation: 0,
+        // title: Text('Garden Central'),
+      ),
+      //appBar: buildAppBar(),
       body: index(_isSelected, context),
       bottomNavigationBar: MoltenBottomNavigationBar(
         duration: Duration(milliseconds: 300),

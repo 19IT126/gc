@@ -24,8 +24,8 @@ class Body extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             SizedBox(height: size.height * 0.03),
-            SvgPicture.asset(
-              "assets/icons/login.svg",
+            Image.asset(
+              "assets/icons/login.png",
               height: size.height * 0.35,
             ),
             SizedBox(height: size.height * 0.03),
