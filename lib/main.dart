@@ -4,8 +4,11 @@ import 'package:gc/login_signup/Screens/Login/login_screen.dart';
 import 'package:gc/login_signup/Screens/Signup/signup_screen.dart';
 import 'package:gc/login_signup/Screens/Welcome/welcome_screen.dart';
 import 'package:gc/screens/home/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
