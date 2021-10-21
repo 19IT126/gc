@@ -43,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: Sidebar(),
       appBar: AppBar(
         elevation: 0,
-        // title: Text('Garden Central'),
+        // title: Text(
+        //   'Garden Central',
+        //   textAlign: TextAlign.right,
+        // ),
       ),
       //appBar: buildAppBar(),
       body: index(_isSelected, context),
