@@ -32,6 +32,8 @@ dependencies:
   url_launcher: ^6.0.10
   share: ^2.0.4
   cloud_firestore: ^2.5.3
+  add_2_calendar: ^2.1.2
+
 
 dev_dependencies:
   flutter_test:

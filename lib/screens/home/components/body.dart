@@ -3,7 +3,7 @@ import 'package:gc/constants.dart';
 
 import 'featurred_plants.dart';
 import 'header_with_seachbox.dart';
-import 'recomend_plants.dart';
+import 'available_plants.dart';
 import 'title_with_more_bbtn.dart';
 
 class Body extends StatelessWidget {
@@ -17,10 +17,8 @@ class Body extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           HeaderWithSearchBox(size: size),
-          TitleWithMoreBtn(title: "Recomended", press: () {}),
-          RecomendsPlants(),
-          TitleWithMoreBtn(title: "Featured Plants", press: () {}),
-          FeaturedPlants(),
+          TitleWithMoreBtn(title: "Available Plants", press: () {}),
+          AvailablePlants(),
           SizedBox(height: kDefaultPadding),
         ],
       ),
