@@ -71,10 +71,10 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: Icon(Icons.article_outlined),
             selectedColor: Colors.white,
           ),
-          MoltenTab(
-            icon: Icon(Icons.alarm_outlined),
-            selectedColor: Colors.white,
-          ),
+          // MoltenTab(
+          //   icon: Icon(Icons.alarm_outlined),
+          //   selectedColor: Colors.white,
+          // ),
           MoltenTab(
             icon: Icon(Icons.local_florist),
             selectedColor: Colors.white,

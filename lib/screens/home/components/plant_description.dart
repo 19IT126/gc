@@ -9,11 +9,7 @@ String sunlight;
 String care;
 String water;
 int interval;
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//todo:Fetch Plant ID from the caller's page to use with firebase
-//todo : fetch image url of the plant from firestore
-//todo:fetch plant's botanical name and common name from the firebase
-//todo:fetch details regarding water,sunlight care and interval
+String desc;
 
 class PlantDescription extends StatefulWidget {
   PlantDescription(DocumentSnapshot<Object> documentSnapshot) {
@@ -23,7 +19,8 @@ class PlantDescription extends StatefulWidget {
     sunlight = documentSnapshot['Sunlight'];
     water = documentSnapshot['Water'];
     care = documentSnapshot['Care'];
-    interval = 2;
+    desc = documentSnapshot['desc'];
+    interval = documentSnapshot['Interval'];
   }
 
   //PlantDescription({Key? key, required this.title}) : super(key: key);
@@ -135,7 +132,7 @@ class _PlantDescriptionState extends State<PlantDescription> {
                             style: new TextStyle(
                                 fontFamily: "Roboto",
                                 fontSize: 16.0,
-                                fontStyle: FontStyle.italic // light
+                                fontStyle: FontStyle.normal // light
                                 ),
                           ),
                         ],
@@ -145,199 +142,220 @@ class _PlantDescriptionState extends State<PlantDescription> {
                 ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: size.width * 0.29,
-                  child: Column(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1.29,
-                        child: Container(
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  SizedBox(
+                    width: size.width * 0.29,
+                    child: Column(
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 1.29,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://cdn-icons-png.flaticon.com/512/616/616712.png'),
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: size.width * 0.29,
                           decoration: BoxDecoration(
+                            //color: Colors.black,
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                            ),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://empire-s3-production.bobvila.com/articles/wp-content/uploads/2017/09/The-Dos-and-Donts-of-Watering-Plants.jpg'),
-                              fit: BoxFit.cover,
-                            ),
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: const Offset(
+                                  5.0,
+                                  5.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 2.0,
+                              ), //BoxShadow
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: const Offset(0.0, 0.0),
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ],
                           ),
-                        ),
-                      ),
-                      Container(
-                        width: size.width * 0.29,
-                        decoration: BoxDecoration(
-                          //color: Colors.black,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              offset: const Offset(
-                                5.0,
-                                5.0,
-                              ),
-                              blurRadius: 10.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: const Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              water,
-                              style: new TextStyle(
-                                fontFamily: "Roboto",
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold, // light
-                                fontStyle: FontStyle.italic,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                water,
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold, // light
+                                  fontStyle: FontStyle.normal,
+                                ),
                               ),
                             ),
                           ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: size.width * 0.29,
+                    child: Column(
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 1.29,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://cdn-icons-png.flaticon.com/512/1294/1294792.png'),
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
                         ),
-                      )
-                    ],
+                        Container(
+                          width: size.width * 0.29,
+                          decoration: BoxDecoration(
+                            //color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: const Offset(
+                                  5.0,
+                                  5.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 2.0,
+                              ), //BoxShadow
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: const Offset(0.0, 0.0),
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                sunlight,
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                  fontFamily: "Roboto",
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold, // light
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: size.width * 0.29,
+                    child: Column(
+                      children: [
+                        AspectRatio(
+                          aspectRatio: 1.29,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(20),
+                                topLeft: Radius.circular(20),
+                              ),
+                              image: DecorationImage(
+                                image: NetworkImage(
+                                    'https://cdn-icons-png.flaticon.com/512/2674/2674327.png'),
+                                fit: BoxFit.fitHeight,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: size.width * 0.29,
+                          decoration: BoxDecoration(
+                            //color: Colors.black,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(20),
+                                bottomRight: Radius.circular(20)),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black12,
+                                offset: const Offset(
+                                  5.0,
+                                  5.0,
+                                ),
+                                blurRadius: 10.0,
+                                spreadRadius: 2.0,
+                              ), //BoxShadow
+                              BoxShadow(
+                                color: Colors.white,
+                                offset: const Offset(0.0, 0.0),
+                                blurRadius: 0.0,
+                                spreadRadius: 0.0,
+                              ), //BoxShadow
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                              child: Text(
+                                care,
+                                textAlign: TextAlign.center,
+                                style: new TextStyle(
+                                  //fontFamily: "Roboto",
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.bold, // light
+                                  fontStyle: FontStyle.normal,
+                                ),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 10.0, horizontal: 24.0),
+                child: Text(
+                  desc,
+                  textAlign: TextAlign.justify,
+                  style: TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.black,
+                    fontFamily: "Mulish-SemiBold",
                   ),
                 ),
-                SizedBox(
-                  width: size.width * 0.29,
-                  child: Column(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1.29,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                            ),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://thepracticalplanter.com/wp-content/uploads/2019/06/Plant-in-Sunlight.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: size.width * 0.29,
-                        decoration: BoxDecoration(
-                          //color: Colors.black,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              offset: const Offset(
-                                5.0,
-                                5.0,
-                              ),
-                              blurRadius: 10.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: const Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              sunlight,
-                              style: new TextStyle(
-                                fontFamily: "Roboto",
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold, // light
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  width: size.width * 0.29,
-                  child: Column(
-                    children: [
-                      AspectRatio(
-                        aspectRatio: 1.29,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(20),
-                              topLeft: Radius.circular(20),
-                            ),
-                            image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://images.ctfassets.net/i3tkg7dt3kro/2AB900W1DvJsF3VN6Ja0ge/fc84c6b70eb42348bb0605b92dc5a328/top-plant-care-tips-1-1.jpg'),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: size.width * 0.29,
-                        decoration: BoxDecoration(
-                          //color: Colors.black,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(20),
-                              bottomRight: Radius.circular(20)),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black12,
-                              offset: const Offset(
-                                5.0,
-                                5.0,
-                              ),
-                              blurRadius: 10.0,
-                              spreadRadius: 2.0,
-                            ), //BoxShadow
-                            BoxShadow(
-                              color: Colors.white,
-                              offset: const Offset(0.0, 0.0),
-                              blurRadius: 0.0,
-                              spreadRadius: 0.0,
-                            ), //BoxShadow
-                          ],
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Center(
-                            child: Text(
-                              care,
-                              style: new TextStyle(
-                                //fontFamily: "Roboto",
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold, // light
-                                fontStyle: FontStyle.italic,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              ],
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -347,7 +365,7 @@ class _PlantDescriptionState extends State<PlantDescription> {
                   //todo:Add Plant to firebase data of the user
                   FloatingActionButton.extended(
                     onPressed: () {},
-                    label: const Text('Add Plant'),
+                    label: const Text('ADD PLANT'),
                     icon: const Icon(Icons.add),
                     backgroundColor: Color(0xff5BC28D),
                   ),

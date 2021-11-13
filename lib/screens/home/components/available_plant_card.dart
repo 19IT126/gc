@@ -65,8 +65,9 @@ class _AvailablePlantCardState extends State<AvailablePlantCard> {
                     text: TextSpan(
                       children: [
                         TextSpan(
-                            text: "$title\n".toUpperCase(),
-                            style: Theme.of(context).textTheme.button),
+                          text: "$title\n".toUpperCase(),
+                          style: Theme.of(context).textTheme.button,
+                        ),
                       ],
                     ),
                   ),
