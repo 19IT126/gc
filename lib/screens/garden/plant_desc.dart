@@ -12,8 +12,11 @@ String water;
 int interval;
 String desc;
 
-class PlantDescription extends StatefulWidget {
-  PlantDescription(DocumentSnapshot<Object> documentSnapshot) {
+class AddedPlantDescription extends StatefulWidget {
+  DocumentSnapshot documentSnapshot;
+  AddedPlantDescription(
+      BuildContext context, DocumentSnapshot<Object> document) {
+    documentSnapshot = document;
     botanicalName = documentSnapshot['B_Name'];
     commonName = documentSnapshot['C_Name'];
     imageURL = documentSnapshot['Image_Link'];
@@ -24,13 +27,11 @@ class PlantDescription extends StatefulWidget {
     interval = documentSnapshot['Interval'];
   }
 
-  //PlantDescription({Key? key, required this.title}) : super(key: key);
-  //final String title;
   @override
-  _PlantDescriptionState createState() => _PlantDescriptionState();
+  _AddedPlantDescriptionState createState() => _AddedPlantDescriptionState();
 }
 
-class _PlantDescriptionState extends State<PlantDescription> {
+class _AddedPlantDescriptionState extends State<AddedPlantDescription> {
   Event buildEvent() {
     return Event(
       title: 'Garden Central',
@@ -58,20 +59,9 @@ class _PlantDescriptionState extends State<PlantDescription> {
     CollectionReference plants = FirebaseFirestore.instance
         .collection(FirebaseAuth.instance.currentUser.uid);
 
-    Future<void> addPlant() {
+    Future<void> removePlant() {
       // Call the user's CollectionReference to add a new user
-      return plants.doc(commonName).set(
-        {
-          'B_Name': botanicalName,
-          'C_Name': commonName,
-          'Image_Link': imageURL,
-          'Sunlight': sunlight,
-          'Water': water,
-          'Care': care,
-          'desc': desc,
-          'Interval': interval,
-        },
-      );
+      return plants.doc(commonName).delete();
     }
 
     Size size = MediaQuery.of(context).size;
@@ -379,27 +369,35 @@ class _PlantDescriptionState extends State<PlantDescription> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  //todo:Add Plant to firebase data of the user
-                  FloatingActionButton.extended(
-                    onPressed: () {
-                      addPlant();
-                    },
-                    label: const Text('ADD PLANT'),
-                    icon: const Icon(Icons.add),
-                    backgroundColor: Color(0xff5BC28D),
-                  ),
-                  // FloatingActionButton.extended(
-                  //   onPressed: () {
-                  //     Add2Calendar.addEvent2Cal(buildEvent());
-                  //   },
-                  //   label: const Text('Remind'),
-                  //   icon: const Icon(Icons.calendar_today),
-                  //   backgroundColor: Color(0xff5BC28D),
-                  // ),
-                ],
+              child: Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        removePlant();
+                        Navigator.pop(context);
+                      },
+                      label: const Text(
+                        'REMOVE PLANT',
+                        style: TextStyle(fontSize: 12.0),
+                      ),
+                      icon: const Icon(Icons.cancel_outlined),
+                      backgroundColor: Color(0xff5BC28D),
+                    ),
+                    FloatingActionButton.extended(
+                      onPressed: () {
+                        Add2Calendar.addEvent2Cal(buildEvent());
+                      },
+                      label: const Text(
+                        'ADD REMINDER',
+                        style: TextStyle(fontSize: 12.0),
+                      ),
+                      icon: const Icon(Icons.calendar_today),
+                      backgroundColor: Color(0xff5BC28D),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

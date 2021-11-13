@@ -26,11 +26,11 @@ class _HomeScreenState extends State<HomeScreen> {
         {
           return ArticleScreen();
         }
+      // case 2:
+      //   {
+      //     return AlarmScreen();
+      //   }
       case 2:
-        {
-          return AlarmScreen();
-        }
-      case 3:
         {
           return GardenScreen();
         }

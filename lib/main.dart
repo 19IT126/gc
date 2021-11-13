@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gc/constants.dart';
@@ -16,10 +17,12 @@ void main() async {
   );
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  var user = FirebaseAuth.instance.currentUser;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,7 @@ class MyApp extends StatelessWidget {
         textTheme: Theme.of(context).textTheme.apply(bodyColor: kTextColor),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: WelcomeScreen(),
+      home: user == null ? WelcomeScreen() : HomeScreen(),
     );
   }
 }
