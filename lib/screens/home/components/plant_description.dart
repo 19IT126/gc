@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 String botanicalName;
 String commonName;
@@ -73,6 +74,13 @@ class _PlantDescriptionState extends State<PlantDescription> {
         },
       );
     }
+
+    void showToast(String msg) => Fluttertoast.showToast(
+          msg: msg,
+          fontSize: 16,
+          backgroundColor: Color(0xBF2B9A00),
+          textColor: Colors.white,
+        );
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -386,6 +394,7 @@ class _PlantDescriptionState extends State<PlantDescription> {
                   FloatingActionButton.extended(
                     onPressed: () {
                       addPlant();
+                      showToast(commonName + " added successfully!!");
                     },
                     label: const Text('ADD PLANT'),
                     icon: const Icon(Icons.add),

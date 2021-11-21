@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gc/constants.dart';
 import 'package:gc/login_signup/Screens/Login/components/background.dart';
 import 'package:gc/login_signup/components/already_have_an_account_acheck.dart';
 import 'package:gc/login_signup/components/rounded_button.dart';
@@ -13,8 +15,10 @@ class Body extends StatelessWidget {
     try {
       UserCredential user = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: username, password: password);
+      showToast("Sign-In Successful!!");
       Navigator.popAndPushNamed(context, '/homeScreen');
     } catch (e) {
+      showToast(e.message);
       print(e);
     } finally {
       checkAuth();
@@ -33,6 +37,13 @@ class Body extends StatelessWidget {
       print(e);
     }
   }
+
+  void showToast(String msg) => Fluttertoast.showToast(
+        msg: msg,
+        fontSize: 16,
+        backgroundColor: Color(0xBF2B9A00),
+        textColor: Colors.white,
+      );
 
   @override
   Widget build(BuildContext context) {

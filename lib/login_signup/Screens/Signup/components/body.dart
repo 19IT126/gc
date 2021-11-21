@@ -1,23 +1,33 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gc/login_signup/Screens/Login/login_screen.dart';
 import 'package:gc/login_signup/Screens/Signup/components/background.dart';
 import 'package:gc/login_signup/components/already_have_an_account_acheck.dart';
 import 'package:gc/login_signup/components/rounded_button.dart';
 import 'package:gc/login_signup/components/rounded_input_field.dart';
 import 'package:gc/login_signup/components/rounded_password_field.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Body extends StatelessWidget {
   String username, password;
-  Future<void> signUp() async {
+  Future<void> signUp(BuildContext context) async {
     try {
       UserCredential user = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: username, password: password);
+      Navigator.popAndPushNamed(context, '/loginScreen');
+      showToast("Successful Signed-Up!!");
     } catch (e) {
+      showToast(e.message);
       print(e);
     }
   }
+
+  void showToast(String msg) => Fluttertoast.showToast(
+        msg: msg,
+        fontSize: 16,
+        backgroundColor: Color(0xBF2B9A00),
+        textColor: Colors.white,
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +60,7 @@ class Body extends StatelessWidget {
             RoundedButton(
               text: "SIGNUP",
               press: () {
-                signUp();
-                Navigator.popAndPushNamed(context, '/loginScreen');
+                signUp(context);
               },
             ),
             SizedBox(height: size.height * 0.03),

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:add_2_calendar/add_2_calendar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 String botanicalName;
 String commonName;
@@ -63,6 +64,13 @@ class _AddedPlantDescriptionState extends State<AddedPlantDescription> {
       // Call the user's CollectionReference to add a new user
       return plants.doc(commonName).delete();
     }
+
+    void showToast(String msg) => Fluttertoast.showToast(
+          msg: msg,
+          fontSize: 16,
+          backgroundColor: Color(0xBF2B9A00),
+          textColor: Colors.white,
+        );
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -376,6 +384,7 @@ class _AddedPlantDescriptionState extends State<AddedPlantDescription> {
                     FloatingActionButton.extended(
                       onPressed: () {
                         removePlant();
+                        showToast(commonName + " removed successfully");
                         Navigator.pop(context);
                       },
                       label: const Text(

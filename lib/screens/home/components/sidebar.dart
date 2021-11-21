@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share/share.dart';
 
@@ -8,6 +9,7 @@ class Sidebar extends StatelessWidget {
     try {
       FirebaseAuth.instance.signOut();
       Navigator.pushNamedAndRemoveUntil(context, '/loginScreen', (r) => false);
+      showToast("Logged-Out!!");
     } catch (e) {
       print(e);
     } finally {
@@ -27,6 +29,13 @@ class Sidebar extends StatelessWidget {
       print(e);
     }
   }
+
+  void showToast(String msg) => Fluttertoast.showToast(
+        msg: msg,
+        fontSize: 16,
+        backgroundColor: Color(0xBF2B9A00),
+        textColor: Colors.white,
+      );
 
   @override
   Widget build(BuildContext context) {
