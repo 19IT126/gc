@@ -1,1 +1,29 @@
-Garden Central is a plant-care based application that can help people make gardening and planting more easy and efficient. People simply have to add their plants and based on the type the application will show all its info like how much water it requires, what type of fertilizers to use, type soil, etc. Also, it automatically sets reminders for water and fertilizers so that you never have to worry.
+## About
+Garden Central is a Plant-Care based Mobile Application made for the people who love to garden. 
+
+With Garden Central you can:
+> Add your plants and it will automatically set reminders for water and fertilizer.
+
+> Also you can get information regarding the needs of your plants including do’s and don’ts.
+
+> With Garden Central you can read various gardening and plants related articles.
+
+
+## Tools and Technologies
+> Language: Flutter using Dart
+
+> Database: Firebase and Firestore
+
+> IDE: Android Studio
+
+> Andriod SDK: Oreo 8.1.0
+
+> API Level: 27
+
+## Other Information
+> [Blog](https://vkpatva1150.wordpress.com/)
+
+> [Video Demostration](https://drive.google.com/file/d/1ziHlRoQPOf5T20eirFxLMRYgTgbpCtyv/view?usp=sharing)
+
+> [Technical Paper](https://drive.google.com/file/d/11EUav4NMePTUEJA3AEdV_qDsnMPGGySw/view?usp=sharing)
+
